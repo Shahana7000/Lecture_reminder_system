@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Timetable</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Manage Timetable</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="faculty.html">Manage Faculty</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Add Lecture Schedule</h2>
+        <form id="timetableForm">
+            <label for="faculty">Select Faculty:</label>
+            <select id="faculty" required>
+                <!-- Faculty options will be populated dynamically -->
+            </select>
+            
+            <label for="lecture_time">Lecture Time:</label>
+            <input type="time" id="lecture_time" required>
+            
+            <button type="submit">Add Schedule</button>
+        </form>
+        
+        <h2>Lecture Timetable</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Faculty Name</th>
+                    <th>Lecture Time</th>
+                </tr>
+            </thead>
+            <tbody id="timetableList">
+                <!-- Data will be inserted dynamically -->
+            </tbody>
+        </table>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
