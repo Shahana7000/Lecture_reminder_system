@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Edit User - Lecture Reminder System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Edit User</h1>
+    
+    <form method="POST">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="{{ user.username }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email class="form-control" id="email" name="email" value="{{ user.email }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-select" id="role" name="role" required>
+                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+                <option value="faculty" {% if user.role == 'faculty' %}selected{% endif %}>Faculty</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">New Password (leave blank to keep current)</label>
+            <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Update User</button>
+        <a href="{{ url_for('dashboard.admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

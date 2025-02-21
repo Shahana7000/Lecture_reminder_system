@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Lecture - Lecture Reminder System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">Edit Lecture</h1>
+    
+    <form method="POST">
+        <div class="mb-3">
+            <label for="course_name" class="form-label">Course Name</label>
+            <input type="text" class="form-control" id="course_name" name="course_name" value="{{ lecture.course_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="scheduled_time" class="form-label">Scheduled Time</label>
+            <input type="datetime-local" class="form-control" id="scheduled_time" name="scheduled_time" 
+                   value="{{ lecture.scheduled_time.strftime('%Y-%m-%dT%H:%M') }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" class="form-control" id="location" name="location" value="{{ lecture.location }}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="{{ url_for('dashboard.admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

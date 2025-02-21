@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Timetable Entry - Lecture Reminder System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4">
+        {% if entry %}Edit{% else %}New{% endif %} Timetable Entry
+    </h1>
+    
+    <form method="POST">
+        <div class="mb-3">
+            <label for="course_name" class="form-label">Course Name</label>
+            <input type="text" class="form-control" id="course_name" name="course_name" 
+                   value="{{ entry.course_name if entry else '' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" 
+                   value="{{ entry.subject if entry else '' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="faculty_id" class="form-label">Faculty</label>
+            <select class="form-select" id="faculty_id" name="faculty_id" required>
+                {% for faculty in faculties %}
+                <option value="{{ faculty.id }}" 
+                        {% if entry and entry.faculty_id == faculty.id %}selected{% endif %}>
+                    {{ faculty.username }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="start_time" class="form-label">Start Time</label>
+            <input type="datetime-local" class="form-control" id="start_time" name="start_time" 
+                   value="{{ entry.start_time.strftime('%Y-%m-%dT%H:%M') if entry else '' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="end_time" class="form-label">End Time</label>
+            <input type="datetime-local" class="form-control" id="end_time" name="end_time" 
+                   value="{{ entry.end_time.strftime('%Y-%m-%dT%H:%M') if entry else '' }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            {% if entry %}Update{% else %}Create{% endif %} Entry
+        </button>
+        <a href="{{ url_for('dashboard.manage_timetable') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
